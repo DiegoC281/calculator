@@ -33,6 +33,14 @@ buttons.forEach((button) => {
             postOperator = Number(display.textContent);
             operate(preOperator, operator, postOperator, false);
         })
+    } else if (button.classList.contains("clear")) {
+        button.addEventListener("click", (ev) => {
+            preOperator = undefined;
+            operator = undefined;
+            postOperator = undefined;
+            display.textContent = undefined;
+            operatorPressed = false;
+        })
     }
 });
 
