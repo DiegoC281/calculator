@@ -54,7 +54,8 @@ body {
 }
 
 .operator:active,
-.clear:active {
+.clear:active,
+.active {
     background-color: hsl(35, 100%, 75%);
 }
 

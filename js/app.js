@@ -6,22 +6,33 @@ let operatorPressed = false;
 let preOperator;
 let operator;
 let postOperator;
+let operatorDOM;
+
+document.addEventListener("keydown", (ev) => {
+    !isNaN(ev.key) ? pressNumber(ev.key) : console.log("NaN");
+});
+
+function pressNumber(key) {
+    let num;
+    key.target ? num = key.target.id : num = key;
+    if (!operatorPressed || display.textContent != preOperator) {
+        display.textContent += num;
+    } else {
+        display.textContent = num;
+    }
+}
 
 buttons.forEach((button) => {
     if (button.classList.contains("number")) {
-        button.addEventListener("click", (ev) => {
-            if (!operatorPressed || display.textContent != preOperator) {
-                display.textContent += button.id;
-            } else {
-                display.textContent = button.id;
-            }
-        });
+        button.addEventListener("click", pressNumber);
     } else if (button.classList.contains("operator")) {
-        button.addEventListener("click", (ev) => {
+        button.addEventListener("click", () => {
             if (!operatorPressed) {
                 operatorPressed = true;
                 preOperator = Number(display.textContent);
                 operator = button.id;
+                operatorDOM = button;
+                operatorDOM.classList.toggle("active");
             } else {
                 postOperator = Number(display.textContent);
                 operate(preOperator, operator, postOperator, button.id);
@@ -29,17 +40,19 @@ buttons.forEach((button) => {
 
         });
     } else if (button.classList.contains("equals")) {
-        button.addEventListener("click", (ev) => {
+        button.addEventListener("click", () => {
             postOperator = Number(display.textContent);
             operate(preOperator, operator, postOperator, false);
         })
     } else if (button.classList.contains("clear")) {
-        button.addEventListener("click", (ev) => {
+        button.addEventListener("click", () => {
             preOperator = undefined;
             operator = undefined;
             postOperator = undefined;
             display.textContent = undefined;
             operatorPressed = false;
+            operatorDOM.classList.remove("active");
+            operatorDOM = undefined;
         })
     }
 });
@@ -64,11 +77,16 @@ function operate(paramA, currentOperator, paramB, nextOperator) {
     preOperator = Number(result);
     if (nextOperator) {
         operator = nextOperator;
+        operatorDOM.classList.toggle("active");
+        operatorDOM = document.querySelector(`#${CSS.escape(operator)}`);
+        operatorDOM.classList.toggle("active");
         operatorPressed = true;
     } else {
         operatorPressed = false;
         postOperator = undefined;
         operator = undefined;
+        operatorDOM.classList.toggle("active");
+        operatorDOM = undefined;
     }
 }
 
