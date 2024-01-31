@@ -13,5 +13,13 @@
         }
     ],
     "start_url": "./",
-    "display": "standalone"
+    "display": "standalone",
+    "screenshots": [
+        {
+            "src": "./screenshots/mobile-screenshot.png",
+            "type": "image/png",
+            "sizes": "385x839",
+            "form_factor": "narrow"
+        }
+    ]
 }
