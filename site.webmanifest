@@ -1,5 +1,12 @@
 {
     "name": "Calculator",
+    "short_name": "Calculator",
+    "id": "/calculator/",
+    "description": "A simple calculator app",
+    "background_color": "#333333",
+    "theme_color": "#ff9f1a",
+    "start_url": "./",
+    "dir": "ltr",
     "icons": [
         {
             "src": "./icons/android-chrome-192x192.png",
@@ -12,7 +19,6 @@
             "type": "image/png"
         }
     ],
-    "start_url": "./",
     "display": "standalone",
     "screenshots": [
         {
@@ -21,5 +27,11 @@
             "sizes": "385x839",
             "form_factor": "narrow"
         }
-    ]
+    ],
+    "launch_handler": {
+        "client_mode": [
+            "navigate-existing",
+            "auto"
+        ]
+    }
 }

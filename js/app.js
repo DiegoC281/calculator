@@ -43,7 +43,7 @@ buttons.forEach((button) => {
         button.addEventListener("click", () => {
             postOperator = Number(display.textContent);
             operate(preOperator, operator, postOperator, false);
-        })
+        });
     } else if (button.classList.contains("clear")) {
         button.addEventListener("click", () => {
             preOperator = undefined;
@@ -53,7 +53,7 @@ buttons.forEach((button) => {
             operatorPressed = false;
             operatorDOM.classList.remove("active");
             operatorDOM = undefined;
-        })
+        });
     }
 });
 
